@@ -1,5 +1,5 @@
 import streamlit as st
-from st_pages import hide_pages
+#from st_pages import hide_pages
 
 st.write('# Interventions')
 

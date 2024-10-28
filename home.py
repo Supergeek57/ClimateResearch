@@ -1,6 +1,6 @@
 import streamlit as st
-from st_pages import hide_pages
-from st_pages import add_page_title, get_nav_from_toml
+#from st_pages import hide_pages
+#from st_pages import add_page_title, get_nav_from_toml
 import streamlit.components.v1 as components
 
 st.write("# Survey")
