@@ -1,1 +1,4 @@
 csv_data/
+.researchenv/
+__pycache__/
+.streamlit/
