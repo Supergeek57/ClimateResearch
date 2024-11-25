@@ -1,6 +1,8 @@
 import os
 import pandas as pd
 
+# Want to collect 2008-2017 and 2019
+
 def parse_dly_file(file_path):
     data = []
     
@@ -11,9 +13,6 @@ def parse_dly_file(file_path):
             month = line[15:17]
             element = line[17:21]
             
-            # Skip files not in 2018, 2019, or 2020
-            if year not in ["2018", "2019", "2020"]:
-                continue
             
             for day in range(31):
                 day_num = day + 1
@@ -29,8 +28,19 @@ def parse_dly_file(file_path):
                 # Check if the date is within the desired range
                 if (
                     (year == "2019") or
-                    (year == "2018" and month == "12" and day_num >= 1) or
-                    (year == "2020" and month == "01" and day_num <= 31)
+                    (year == "2018") or
+                    (year == "2017") or
+                    (year == "2016") or
+                    (year == "2015") or
+                    (year == "2014") or
+                    (year == "2013") or
+                    (year == "2012") or
+                    (year == "2011") or
+                    (year == "2010") or
+                    (year == "2009") or
+                    (year == "2008") or
+                    (year == "2007" and month == "12") or
+                    (year == "2020" and month == "01")
                 ):
                     if value != "-9999":  # Skip missing values
                         data.append([station_id, date, element, value, mflag, qflag, sflag])
@@ -41,7 +51,7 @@ def parse_dly_file(file_path):
 
 # Specify the directory containing .dly files
 dly_directory = '/Users/hollandamazonia/Downloads/ghcnd_all/ghcnd_all'
-output_csv = '2019_data_week_cushion.csv'
+output_csv = 'ghcnd_all_years_NEW.csv'
 
 # Remove the file if it exists to avoid appending to old data
 if os.path.exists(output_csv):
