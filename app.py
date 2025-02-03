@@ -1,12 +1,37 @@
 import streamlit as st
 import streamlit.components.v1 as components
+import boto3
+
+def get_access_code():
+    # Load AWS credentials
+    aws_access_key = st.secrets["aws"]["ACCESS_KEY"]
+    aws_secret_key = st.secrets["aws"]["SECRET_KEY"]
+    aws_region = "us-east-2"
+
+    # Load SSM
+    ssm = boto3.client(
+    "ssm",
+    aws_access_key_id=aws_access_key,
+    aws_secret_access_key=aws_secret_key,
+    region_name=aws_region
+    )
+
+    # Fetch daily access code
+    try:
+        response = ssm.get_parameter(Name="/streamlit/access_code", WithDecryption=True)
+        return response['Parameter']['Value']
+    except Exception as e:
+        st.error("Failed to retrieve access code.")
+        return None
+    
 
 # Initialize session state for access control
 if "access_granted" not in st.session_state:
     st.session_state.access_granted = False
 
 # Access Code Entry for Hidden Page
-access_code = "open-sesame"  # Replace with your secure passphrase
+access_code = get_access_code()  # Get access code from AWS to sync with SMS messaging
+
 
 # Sidebar access code entry
 with st.sidebar:
