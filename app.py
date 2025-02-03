@@ -4,8 +4,8 @@ import boto3
 
 def get_access_code():
     # Load AWS credentials
-    aws_access_key = st.secrets["aws"]["ACCESS_KEY"]
-    aws_secret_key = st.secrets["aws"]["SECRET_KEY"]
+    aws_access_key = st.secrets["ACCESS_KEY"]
+    aws_secret_key = st.secrets["SECRET_KEY"]
     aws_region = "us-east-2"
 
     # Load SSM
