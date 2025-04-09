@@ -58,11 +58,11 @@ with st.sidebar:
 
     # Display hidden page link if access is granted
     if st.session_state.access_intervention1:
-        page_selection = st.radio("Navigate", ["Home", "Intervention 1"])
+        page_selection = st.radio("Navigate", ["Home", "Low-Frequency Breathing"])
     elif st.session_state.access_intervention2:
-        page_selection = st.radio("Navigate", ["Home", "Intervention 2"])
+        page_selection = st.radio("Navigate", ["Home", "Box Breathing"])
     elif st.session_state.access_intervention3:
-        page_selection = st.radio("Navigate", ["Home", "Intervention 3"])
+        page_selection = st.radio("Navigate", ["Home", "Cyclic Sighing"])
     else:
         page_selection = st.radio("Navigate", ["Home"])
 
@@ -76,21 +76,21 @@ if page_selection == "Home":
     # Display the iframe in the Streamlit app
     components.html(iframe_code, height=800, width=600)
     
-elif page_selection == "Intervention 1" and st.session_state.access_intervention1:
+elif page_selection == "Low-Frequency Breathing" and st.session_state.access_intervention1:
     st.title("Breathwork technique: Low-frequency breathing")
     st.write("Short demonstration video")
     youtube_url = "https://www.youtube.com/watch?v=ZToicYcHIOU"
     st.video(youtube_url)
     st.write("Link in case of technical issues: https://www.youtube.com/watch?v=ZToicYcHIOU")
 
-elif page_selection == "Intervention 2" and st.session_state.access_intervention2:
+elif page_selection == "Box Breathing" and st.session_state.access_intervention2:
     st.title("Breathwork technique: Box breathing")
     st.write("Short demonstration video")
     youtube_url = "https://www.youtube.com/watch?v=ZToicYcHIOU"
     st.video(youtube_url)
     st.write("Link in case of technical issues: https://www.youtube.com/watch?v=ZToicYcHIOU")
 
-elif page_selection == "Intervention 3" and st.session_state.access_intervention3:
+elif page_selection == "Cyclic Sighing" and st.session_state.access_intervention3:
     st.title("Breathwork technique: Cyclic sighing")
     st.write("Short demonstration video")
     youtube_url = "https://www.youtube.com/watch?v=ZToicYcHIOU"
