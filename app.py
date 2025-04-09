@@ -2,7 +2,7 @@ import streamlit as st
 import streamlit.components.v1 as components
 import boto3
 
-def get_access_code():
+def get_access_codes():
     # Load AWS credentials
     aws_access_key = st.secrets["ACCESS_KEY"]
     aws_secret_key = st.secrets["SECRET_KEY"]
@@ -18,8 +18,13 @@ def get_access_code():
 
     # Fetch daily access code
     try:
-        response = ssm.get_parameter(Name="/streamlit/access_code", WithDecryption=True)
-        return response['Parameter']['Value']
+        response = ssm.get_parameter(Name="/streamlit/code1", WithDecryption=True)
+        code1 = response['Parameter']['Value']
+        response = ssm.get_parameter(Name="/streamlit/code2", WithDecryption=True)
+        code2 = response['Parameter']['Value']
+        response = ssm.get_parameter(Name="/streamlit/code3", WithDecryption=True)
+        code3 = response['Parameter']['Value']
+        return code1, code2, code3
     except Exception as e:
         st.error("Failed to retrieve access code.")
         return None
@@ -34,9 +39,7 @@ if "access_intervention3" not in st.session_state:
     st.session_state.access_intervention3 = False
 
 # Access Code Entry for Hidden Page
-code1 = get_access_code()  # Get access code from AWS to sync with SMS messaging
-code2 = "open-2" #TODO: Change this to another random code from AWS
-code3 = "open-3" #TODO: Change this to another random code from AWS
+code1, code2, code3 = get_access_codes()  # Get access codes from AWS to sync with SMS messaging
 
 
 # Sidebar access code entry
