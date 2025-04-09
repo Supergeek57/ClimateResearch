@@ -41,7 +41,7 @@ code3 = "open-3" #TODO: Change this to another random code from AWS
 
 # Sidebar access code entry
 with st.sidebar:
-    if not st.session_state.access_granted:
+    if not (st.session_state.access_intervention1 or st.session_state.access_intervention2 or st.session_state.access_intervention3):
         password = st.text_input("Enter Access Code:", type="password")
         if st.button("Submit"):
             if password == code1:
