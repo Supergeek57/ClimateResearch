@@ -26,11 +26,17 @@ def get_access_code():
     
 
 # Initialize session state for access control
-if "access_granted" not in st.session_state:
-    st.session_state.access_granted = False
+if "access_intervention1" not in st.session_state:
+    st.session_state.access_intervention1 = False
+if "access_intervention2" not in st.session_state:
+    st.session_state.access_intervention2 = False
+if "access_intervention3" not in st.session_state:
+    st.session_state.access_intervention3 = False
 
 # Access Code Entry for Hidden Page
-access_code = get_access_code()  # Get access code from AWS to sync with SMS messaging
+code1 = get_access_code()  # Get access code from AWS to sync with SMS messaging
+code2 = "open-2" #TODO: Change this to another random code from AWS
+code3 = "open-3" #TODO: Change this to another random code from AWS
 
 
 # Sidebar access code entry
@@ -38,15 +44,25 @@ with st.sidebar:
     if not st.session_state.access_granted:
         password = st.text_input("Enter Access Code:", type="password")
         if st.button("Submit"):
-            if password == access_code:
-                st.session_state.access_granted = True
+            if password == code1:
+                st.session_state.access_intervention1 = True
+                st.success("Access granted!")
+            elif password == code2:
+                st.session_state.access_intervention2 = True
+                st.success("Access granted!")
+            elif password == code3:
+                st.session_state.access_intervention3 = True
                 st.success("Access granted!")
             else:
                 st.error("Incorrect access code.")
 
     # Display hidden page link if access is granted
-    if st.session_state.access_granted:
-        page_selection = st.radio("Navigate", ["Home", "Interventions"])
+    if st.session_state.access_intervention1:
+        page_selection = st.radio("Navigate", ["Home", "Intervention 1"])
+    elif st.session_state.access_intervention2:
+        page_selection = st.radio("Navigate", ["Home", "Intervention 2"])
+    if st.session_state.access_intervention3:
+        page_selection = st.radio("Navigate", ["Home", "Intervention 3"])
     else:
         page_selection = st.radio("Navigate", ["Home"])
 
@@ -60,9 +76,23 @@ if page_selection == "Home":
     # Display the iframe in the Streamlit app
     components.html(iframe_code, height=800, width=600)
     
-elif page_selection == "Interventions" and st.session_state.access_granted:
-    st.title("Interventions")
-    st.write("10-minute meditation from Calm")
+elif page_selection == "Intervention 1" and st.session_state.access_intervention1:
+    st.title("Breathwork technique: Low-frequency breathing")
+    st.write("Short demonstration video")
+    youtube_url = "https://www.youtube.com/watch?v=ZToicYcHIOU"
+    st.video(youtube_url)
+    st.write("Link in case of technical issues: https://www.youtube.com/watch?v=ZToicYcHIOU")
+
+elif page_selection == "Intervention 2" and st.session_state.access_intervention2:
+    st.title("Breathwork technique: Box breathing")
+    st.write("Short demonstration video")
+    youtube_url = "https://www.youtube.com/watch?v=ZToicYcHIOU"
+    st.video(youtube_url)
+    st.write("Link in case of technical issues: https://www.youtube.com/watch?v=ZToicYcHIOU")
+
+elif page_selection == "Intervention 3" and st.session_state.access_intervention3:
+    st.title("Breathwork technique: Cyclic sighing")
+    st.write("Short demonstration video")
     youtube_url = "https://www.youtube.com/watch?v=ZToicYcHIOU"
     st.video(youtube_url)
     st.write("Link in case of technical issues: https://www.youtube.com/watch?v=ZToicYcHIOU")
