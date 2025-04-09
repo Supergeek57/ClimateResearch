@@ -61,7 +61,7 @@ with st.sidebar:
         page_selection = st.radio("Navigate", ["Home", "Intervention 1"])
     elif st.session_state.access_intervention2:
         page_selection = st.radio("Navigate", ["Home", "Intervention 2"])
-    if st.session_state.access_intervention3:
+    elif st.session_state.access_intervention3:
         page_selection = st.radio("Navigate", ["Home", "Intervention 3"])
     else:
         page_selection = st.radio("Navigate", ["Home"])
