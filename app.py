@@ -57,7 +57,7 @@ with st.sidebar:
                 st.session_state.access_intervention3 = True
                 st.success("Access granted!")
             else:
-                st.error("Incorrect access code: ", password)
+                st.error("Incorrect access code")
 
     # Display hidden page link if access is granted
     if st.session_state.access_intervention1:
