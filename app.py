@@ -71,7 +71,7 @@ with st.sidebar:
 
 # Display main or hidden page content based on selection
 if page_selection == "Home":
-    st.title("Survey")
+    st.title("Demographic Survey")
     st.write("This survey will help us understand your background and current subjective mood. It should only take about 5 minutes to complete.")
     survey_url = "https://universityofalabama.az1.qualtrics.com/jfe/form/SV_6gnRQdY0zIUMtUO"
     iframe_code = f'<iframe src="{survey_url}" height="800px" width="600px"></iframe>'
