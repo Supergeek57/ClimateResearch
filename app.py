@@ -88,7 +88,7 @@ elif page_selection == "Box Breathing" and st.session_state.access_intervention1
     st.title("Breathwork technique: Box breathing")
     st.write("Short demonstration video")
     youtube_url = "https://www.youtube.com/watch?v=ZToicYcHIOU"
-    col1, col2, col3 = st.columns([1, 2, 1])
+    col1, col2, col3 = st.columns([1, 3, 1])
     with col2:
         st.video(video_bytes)
     st.write("Link in case of technical issues: https://www.youtube.com/watch?v=ZToicYcHIOU")
