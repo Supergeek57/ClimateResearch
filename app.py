@@ -66,9 +66,9 @@ with st.sidebar:
 
     # Display hidden page link if access is granted
     if st.session_state.access_intervention1:
-        page_selection = st.radio("Navigate", ["Home", "Low-Frequency Breathing"])
-    elif st.session_state.access_intervention2:
         page_selection = st.radio("Navigate", ["Home", "Box Breathing"])
+    elif st.session_state.access_intervention2:
+        page_selection = st.radio("Navigate", ["Home", "Low-Frequency Breathing"])
     elif st.session_state.access_intervention3:
         page_selection = st.radio("Navigate", ["Home", "Cyclic Sighing"])
     else:
