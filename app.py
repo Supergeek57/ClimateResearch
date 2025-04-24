@@ -41,6 +41,11 @@ if "access_intervention3" not in st.session_state:
 # Access Code Entry for Hidden Page
 code1, code2, code3 = get_access_codes()  # Get access codes from AWS to sync with SMS messaging
 
+# Get bytes for box breathing video
+
+with open("box_breathing_ai_video.mp4", "rb") as video_file:
+    video_bytes = video_file.read()
+
 
 # Sidebar access code entry
 with st.sidebar:
@@ -83,7 +88,7 @@ elif page_selection == "Low-Frequency Breathing" and st.session_state.access_int
     st.title("Breathwork technique: Low-frequency breathing")
     st.write("Short demonstration video")
     youtube_url = "https://www.youtube.com/watch?v=ZToicYcHIOU"
-    st.video(youtube_url)
+    st.video(video_bytes)
     st.write("Link in case of technical issues: https://www.youtube.com/watch?v=ZToicYcHIOU")
 
 elif page_selection == "Box Breathing" and st.session_state.access_intervention2:
