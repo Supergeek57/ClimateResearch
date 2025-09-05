@@ -52,7 +52,7 @@ with st.sidebar:
     if not (st.session_state.access_intervention1 or st.session_state.access_intervention2 or st.session_state.access_intervention3):
         password = st.text_input("Enter Access Code:", type="password")
         if st.button("Submit"):
-            if password == "intervention1": #TODO: Change this back to code1 after IRB review
+            if password == code1: #TODO: Change this to a static code for IRB review
                 st.session_state.access_intervention1 = True
                 st.success("Access granted!")
             elif password == code2:
